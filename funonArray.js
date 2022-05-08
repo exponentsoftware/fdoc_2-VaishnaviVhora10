@@ -13,11 +13,29 @@ function addUser(user_data, { name, scores, skills, age }) {
     const user = { name, scores, skills, age };
     user_data.push(user);
     return user;
-    }
-   
-  }
+    }}
+
+    function addUserSkill(user_data, user, skill) {
+        const existingUser = user_data.some(({ name }, index, arr) => {
+          const result = name === user;
+          if (result) user_data[index].skills.push(skill);
+          return result;
+        });
+        if (!existingUser) return false;
+        return true;
+      }
+
+      function userEdit(user_data, username, user){
+        const existingUser = user_data.some(({ name }, index, arr) => {
+            const result = name === username;
+            if (result) user_data[index] = user;
+            return result;
+          });
+          if (!existingUser) return false;
+          return true;
+      }
  
-  const users = [
+      const users = [
 	{
 		name:'Brook', 
 		scores:75,
@@ -63,3 +81,6 @@ function addUser(user_data, { name, scores, skills, age }) {
 	];
 console.log(scores_greater85(users));
 console.log(addUser(users, { name: "Vaishnavi", scores: 95, skills: ['coding'], age: 25 }));
+console.log(addUserSkill(users, 'Vaishnavi', 'reading'));
+console.log(userEdit(users, "Sara", { name: "VAISHNAVI", scores: 105, skills: "communication", age: 26 }));
+// console.log(users)
