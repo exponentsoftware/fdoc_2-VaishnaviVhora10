@@ -3,7 +3,21 @@ function scores_greater85(users){
     return users.filter(({ scores }) => scores > 85);
 }
 
-const users = [
+function addUser(user_data, { name, scores, skills, age }) {
+    const username = name;
+    const existingUser = user_data.some(({ name }) => name === username);
+    if (existingUser) {
+    console.log("user already exists");
+    }
+    else{
+    const user = { name, scores, skills, age };
+    user_data.push(user);
+    return user;
+    }
+   
+  }
+ 
+  const users = [
 	{
 		name:'Brook', 
 		scores:75,
@@ -48,3 +62,4 @@ const users = [
 	}
 	];
 console.log(scores_greater85(users));
+console.log(addUser(users, { name: "Vaishnavi", scores: 95, skills: ['coding'], age: 25 }));
